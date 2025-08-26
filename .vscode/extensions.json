@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "yoavbls.pretty-ts-errors",
+    "mikestead.dotenv",
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-australian-english",
+    "visualstudioexptteam.vscodeintellicode",
+    "bradlc.vscode-tailwindcss"
+  ]
+}
