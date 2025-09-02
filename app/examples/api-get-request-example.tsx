@@ -15,9 +15,9 @@ const ApiGetRequestExample = () => {
   return (
     <Card className="h-min">
       <CardHeader>
-        <CardTitle>API - GET Request</CardTitle>
+        <CardTitle>GET Request (CSR)</CardTitle>
         <CardDescription>
-          An example of a GET request to the Pokemon API.
+          Client-side rendering using the Pokemon API.
         </CardDescription>
       </CardHeader>
       <CardContent className="gap-` flex flex-col items-center">
