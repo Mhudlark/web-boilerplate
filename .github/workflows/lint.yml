@@ -24,7 +24,7 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - run: npm run eslint
+    - run: npm run lint
 
   prettier:
     name: Prettier
@@ -43,7 +43,4 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - run: |
-        if ! npm run prettier; then
-          echo "::error ::Style issues found, run 'npm run prettier:fix'" && exit 1
-        fi
+    - run: npm run prettier
