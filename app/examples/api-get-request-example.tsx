@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import useGetPokemon from "@/lib/pokemon-api/use-get-pokemon";
+import Image from "next/image";
 
 const ApiGetRequestExample = () => {
   const { data } = useGetPokemon("pikachu");
@@ -24,11 +25,13 @@ const ApiGetRequestExample = () => {
         <p className="text-2xl font-bold">{data?.name}</p>
 
         {data?.sprites.front_default && (
-          <img
+          <Image
             src={data?.sprites.front_default}
-            alt={data?.name}
+            alt={data?.name ?? "Pokemon"}
             width={100}
             height={100}
+            priority
+            unoptimized
           />
         )}
 

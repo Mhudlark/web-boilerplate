@@ -15,7 +15,7 @@ export const createQueryClient = () =>
       },
     },
     queryCache: new QueryCache({
-      onError: (err) => {
+      onError: () => {
         // global error handling, e.g. toast notification ...
       },
     }),

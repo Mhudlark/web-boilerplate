@@ -29,16 +29,45 @@ type GetPokemonResponse = {
       url: string;
     };
   }>;
-  held_items: Array<any>;
+  held_items: Array<{
+    item: {
+      name: string;
+      url: string;
+    };
+    version_details: Array<{
+      rarity: number;
+      version: {
+        name: string;
+        url: string;
+      };
+    }>;
+  }>;
   location_area_encounters: string;
-  moves: Array<any>;
+  moves: Array<{
+    move: {
+      name: string;
+      url: string;
+    };
+    version_group_details: Array<{
+      level_learned_at: number;
+      move_learn_method: {
+        name: string;
+        url: string;
+      };
+      order: number | null;
+      version_group: {
+        name: string;
+        url: string;
+      };
+    }>;
+  }>;
   species: {
     name: string;
     url: string;
   };
   sprites: {
-    front_default: string | null;
-    [key: string]: any;
+    front_default: string;
+    [key: string]: string;
   };
   stats: Array<{
     base_stat: number;
