@@ -53,13 +53,8 @@ export default function ComponentsPage() {
 
   return (
     <div className="bg-background flex min-h-screen justify-center p-8">
-      <div className="flex max-w-4xl flex-col gap-12">
-        <div className="flex flex-col gap-4 text-center">
-          <h1 className="text-4xl font-bold">UI Components</h1>
-          <p className="text-muted-foreground">
-            A comprehensive showcase of all available UI components
-          </p>
-        </div>
+      <div className="flex max-w-4xl flex-col gap-24">
+        <h1 className="text-4xl font-bold">UI Components</h1>
 
         {/* Buttons */}
         <Section title="Button">
@@ -82,7 +77,7 @@ export default function ComponentsPage() {
                 <Button size="default">Default</Button>
                 <Button size="lg">Large</Button>
                 <Button size="icon">
-                  <HeartIcon />
+                  <HeartIcon aria-label="Example heart icon button" />
                 </Button>
               </div>
             </div>
@@ -127,7 +122,11 @@ export default function ComponentsPage() {
                 <CardTitle>Card with Action</CardTitle>
                 <CardDescription>Card with action button</CardDescription>
                 <CardAction>
-                  <Button size="sm" variant="outline">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    aria-label="Example settings icon button"
+                  >
                     <SettingsIcon />
                   </Button>
                 </CardAction>
@@ -205,7 +204,7 @@ export default function ComponentsPage() {
               <div className="space-y-2">
                 <Label>Default Size</Label>
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="Default select component example">
                     <SelectValue placeholder="Select an option" />
                   </SelectTrigger>
                   <SelectContent>
@@ -218,7 +217,10 @@ export default function ComponentsPage() {
               <div className="space-y-2">
                 <Label>Small Size</Label>
                 <Select>
-                  <SelectTrigger size="sm">
+                  <SelectTrigger
+                    size="sm"
+                    aria-label="Small select component example"
+                  >
                     <SelectValue placeholder="Small select" />
                   </SelectTrigger>
                   <SelectContent>
@@ -232,7 +234,7 @@ export default function ComponentsPage() {
               <div className="space-y-2">
                 <Label>With Icons</Label>
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="Select with icons example">
                     <SelectValue placeholder="Select user type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -254,11 +256,11 @@ export default function ComponentsPage() {
               <div className="space-y-2">
                 <Label>Disabled Select</Label>
                 <Select disabled>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="Disabled select component example">
                     <SelectValue placeholder="Disabled select" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="disabled">Won't show</SelectItem>
+                    <SelectItem value="disabled">{"Won't show"}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
