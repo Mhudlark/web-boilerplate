@@ -616,9 +616,9 @@ export default function ComponentsPage() {
                   <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
-                        <a
-                          className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
+                        <Link
                           href="/"
+                          className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
                         >
                           <div className="mt-4 mb-2 text-lg font-medium">
                             shadcn/ui
@@ -627,7 +627,7 @@ export default function ComponentsPage() {
                             Beautifully designed components built with Tailwind
                             CSS.
                           </p>
-                        </a>
+                        </Link>
                       </NavigationMenuLink>
                     </li>
                     <ListItem href="/docs" title="Introduction">
