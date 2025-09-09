@@ -91,6 +91,11 @@ const fetchGetPokemon = async (name: string) => {
   const response = await pokemonApi.fetch(`/pokemon/${name}`, {
     method: "GET",
   });
+
+  if (!response.ok) {
+    return pokemonApi.throwApiError(response);
+  }
+
   return response.json() as Promise<GetPokemonResponse>;
 };
 
