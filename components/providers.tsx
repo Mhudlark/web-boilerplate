@@ -19,9 +19,9 @@ export const Providers = ({ children }: PropsWithChildren) => {
         disableTransitionOnChange
       >
         {children}
-        <ReactQueryDevtools initialIsOpen={false} />
         <Toaster />
       </ThemeProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };

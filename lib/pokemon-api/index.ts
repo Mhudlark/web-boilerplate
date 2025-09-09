@@ -6,6 +6,14 @@ const pokemonApi = {
       // Add default headers here
       ...options,
     }),
+  throwApiError: async (response: Response) => {
+    if (response.body) {
+      const error = await response.text();
+      throw new Error(error);
+    } else {
+      throw new Error("Something went wrong, please try again later");
+    }
+  },
 };
 
 export default pokemonApi;
