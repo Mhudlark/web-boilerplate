@@ -1,0 +1,15 @@
+/* 
+  Base styles for typography in the project
+  This file is imported in globals.css
+*/
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+}
