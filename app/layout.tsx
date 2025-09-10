@@ -1,8 +1,22 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
+import { Geist_Mono, Inter, Montserrat } from "next/font/google";
 import { Providers } from "../components/providers";
-import { headingFont, inter } from "./fonts";
 import "./globals.css";
+
+// Body font - Inter from Google Fonts
+export const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+// Heading font - Using Montserrat from Google Fonts
+export const headingFont = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-heading",
+  weight: ["400", "500", "600", "700"],
+});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -20,11 +34,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${headingFont.variable} ${geistMono.variable}`}
-    >
-      <body className="antialiased">
+    <html lang="en">
+      <body
+        className={`${inter.variable} ${headingFont.variable} ${geistMono.variable} antialiased`}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>
