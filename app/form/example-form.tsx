@@ -23,6 +23,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -124,23 +125,40 @@ const defaultValues: ExampleFormSchema = {
   terms: false,
 };
 
+const examplePrefillData: Partial<ExampleFormSchema> = {
+  username: "AdaLovelace",
+  confirmUsername: "AdaLovelace",
+};
+
 export type ExampleFormSchema = z.infer<typeof formSchema>;
 
-export interface ExampleFormProps {
-  prefillData?: Partial<ExampleFormSchema>;
-}
+export default function ExampleForm() {
+  // An example of fetching prefill data from an API
+  const { data: prefillData } = useQuery({
+    queryKey: ["example-prefill"],
+    queryFn: (): Promise<Partial<ExampleFormSchema>> => {
+      // Wait 2 seconds and return example prefill data
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(examplePrefillData);
+        }, 2000);
+      });
+    },
+  });
 
-export default function ExampleForm({ prefillData = {} }: ExampleFormProps) {
   const form = useForm<ExampleFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues,
   });
 
-  useEffect(() => {
-    if (prefillData) {
-      form.reset({ ...defaultValues, ...prefillData });
-    }
-  }, [prefillData, form]);
+  useEffect(
+    function setPrefillData() {
+      if (prefillData) {
+        form.reset({ ...defaultValues, ...prefillData });
+      }
+    },
+    [prefillData, form],
+  );
 
   function onSubmit(values: ExampleFormSchema) {
     // Do something with the form values.
