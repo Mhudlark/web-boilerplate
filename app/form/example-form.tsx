@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { ButtonLoading } from "@/components/features/form/button-loading";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
@@ -23,10 +23,11 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const skillsOptions = [
@@ -133,7 +134,9 @@ const examplePrefillData: Partial<ExampleFormSchema> = {
 export type ExampleFormSchema = z.infer<typeof formSchema>;
 
 export default function ExampleForm() {
-  // An example of fetching prefill data from an API
+  const queryClient = useQueryClient();
+
+  // Query for pre-filling the form with data from an API
   const { data: prefillData } = useQuery({
     queryKey: ["example-prefill"],
     queryFn: (): Promise<Partial<ExampleFormSchema>> => {
@@ -143,6 +146,19 @@ export default function ExampleForm() {
           resolve(examplePrefillData);
         }, 2000);
       });
+    },
+  });
+
+  // Mutation for form submission
+  const { mutate: submitForm, isPending } = useMutation({
+    mutationFn: (values: ExampleFormSchema) => {
+      console.log("Form submitted with values:", values);
+      // Here you could make an API call to submit the form
+      return Promise.resolve(values);
+    },
+    onSuccess: () => {
+      // revalidate query
+      return queryClient.invalidateQueries({ queryKey: ["example-prefill"] });
     },
   });
 
@@ -161,9 +177,16 @@ export default function ExampleForm() {
   );
 
   function onSubmit(values: ExampleFormSchema) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    // Submit the form using the mutation
+    submitForm(values, {
+      onSuccess: () => {
+        toast.success("Form submitted successfully!");
+      },
+      onError: (error) => {
+        toast.error("Form submission failed. Please try again.");
+        console.error("Form submission failed:", error);
+      },
+    });
   }
 
   return (
@@ -431,9 +454,9 @@ export default function ExampleForm() {
             )}
           />
 
-          <Button type="submit" className="w-full">
+          <ButtonLoading type="submit" className="w-full" isLoading={isPending}>
             Create Account
-          </Button>
+          </ButtonLoading>
         </form>
       </Form>
     </div>
