@@ -1,6 +1,7 @@
+import { Navbar } from "@/components/features/layout/navbar";
+import { Providers } from "@/components/providers";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Providers } from "../components/providers";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -24,11 +25,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    // Suppress hydration warning used for next-thems
+    // https://ui.shadcn.com/docs/dark-mode/next
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
       </body>
     </html>
   );
