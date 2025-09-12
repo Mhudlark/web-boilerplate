@@ -7,11 +7,25 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { routes } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeSelect } from "./theme-select";
+
+const routes = [
+  {
+    title: "Home",
+    href: "/",
+  },
+  {
+    title: "Components",
+    href: "/components",
+  },
+  {
+    title: "Examples",
+    href: "/examples",
+  },
+];
 
 export function Navbar() {
   const pathname = usePathname();
