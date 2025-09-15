@@ -17,7 +17,7 @@ const useGetExampleFormData = () => {
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve(examplePrefillData);
-        }, 2000);
+        }, 800);
       });
     },
   });
