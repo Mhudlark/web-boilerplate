@@ -1,6 +1,6 @@
 "use client";
 
-import { ButtonLoading } from "@/components/features/form/button-loading";
+import { ButtonLoading } from "@/app/form/button-loading";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
@@ -23,11 +23,8 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 import { z } from "zod";
 
 const skillsOptions = [
@@ -126,68 +123,23 @@ const defaultValues: ExampleFormSchema = {
   terms: false,
 };
 
-const examplePrefillData: Partial<ExampleFormSchema> = {
-  username: "AdaLovelace",
-  confirmUsername: "AdaLovelace",
-};
-
 export type ExampleFormSchema = z.infer<typeof formSchema>;
 
-export default function ExampleForm() {
-  const queryClient = useQueryClient();
+export interface ExampleFormProps {
+  values?: Partial<ExampleFormSchema>;
+  handleSubmit: (data: ExampleFormSchema) => void;
+  isSubmitting?: boolean;
+}
 
-  // Query for pre-filling the form with data from an API
-  const { data: prefillData } = useQuery({
-    queryKey: ["example-prefill"],
-    queryFn: (): Promise<Partial<ExampleFormSchema>> => {
-      // Wait 2 seconds and return example prefill data
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(examplePrefillData);
-        }, 2000);
-      });
-    },
-  });
-
-  // Mutation for form submission
-  const { mutate: submitForm, isPending } = useMutation({
-    mutationFn: (values: ExampleFormSchema) => {
-      console.log("Form submitted with values:", values);
-      // Here you could make an API call to submit the form
-      return Promise.resolve(values);
-    },
-    onSuccess: () => {
-      // revalidate query
-      return queryClient.invalidateQueries({ queryKey: ["example-prefill"] });
-    },
-  });
-
+export default function ExampleForm({
+  values,
+  handleSubmit,
+  isSubmitting = false,
+}: ExampleFormProps) {
   const form = useForm<ExampleFormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues,
+    values: { ...defaultValues, ...values },
   });
-
-  useEffect(
-    function setPrefillData() {
-      if (prefillData) {
-        form.reset({ ...defaultValues, ...prefillData });
-      }
-    },
-    [prefillData, form],
-  );
-
-  function onSubmit(values: ExampleFormSchema) {
-    // Submit the form using the mutation
-    submitForm(values, {
-      onSuccess: () => {
-        toast.success("Form submitted successfully!");
-      },
-      onError: (error) => {
-        toast.error("Form submission failed. Please try again.");
-        console.error("Form submission failed:", error);
-      },
-    });
-  }
 
   return (
     <div>
@@ -198,7 +150,7 @@ export default function ExampleForm() {
 
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmit)}
+          onSubmit={form.handleSubmit(handleSubmit)}
           className="flex flex-col gap-4 space-y-6"
         >
           {/* Username */}
@@ -454,7 +406,11 @@ export default function ExampleForm() {
             )}
           />
 
-          <ButtonLoading type="submit" className="w-full" isLoading={isPending}>
+          <ButtonLoading
+            type="submit"
+            className="w-full"
+            isLoading={isSubmitting}
+          >
             Create Account
           </ButtonLoading>
         </form>
