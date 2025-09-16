@@ -87,7 +87,7 @@ type GetPokemonResponse = {
 };
 
 // Fetch function
-const fetchGetPokemon = async (name: string) => {
+export const fetchGetPokemon = async (name: string) => {
   const response = await pokemonApi.fetch(`/pokemon/${name}`, {
     method: "GET",
   });

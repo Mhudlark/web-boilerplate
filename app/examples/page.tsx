@@ -1,4 +1,5 @@
-import ApiGetRequestExample from "./api-get-request-example";
+import ClientSideFetchExample from "./client-side-fetch-example";
+import ServerSideFetchExample from "./server-side-fetch-example";
 
 export default function ExamplesPage() {
   return (
@@ -6,7 +7,8 @@ export default function ExamplesPage() {
       <div className="flex max-w-4xl flex-col gap-24">
         <h1 className="text-center text-4xl font-bold">Examples</h1>
         <div className="grid min-h-screen w-full grid-cols-2 gap-4">
-          <ApiGetRequestExample />
+          <ClientSideFetchExample />
+          <ServerSideFetchExample />
         </div>
       </div>
     </div>

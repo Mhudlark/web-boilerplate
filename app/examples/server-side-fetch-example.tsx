@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Card,
   CardContent,
@@ -7,21 +5,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import useGetPokemon from "@/lib/pokemon-api/use-get-pokemon";
+import { fetchGetPokemon } from "@/lib/pokemon-api/use-get-pokemon";
 import Image from "next/image";
 
-const ApiGetRequestExample = () => {
-  const { data } = useGetPokemon("pikachu");
+export default async function ServerSideFetchExample() {
+  const data = await fetchGetPokemon("pikachu");
 
   return (
     <Card className="h-min">
       <CardHeader>
-        <CardTitle>GET Request (CSR)</CardTitle>
+        <CardTitle>GET Request (SSR)</CardTitle>
         <CardDescription>
-          Client-side rendering using the Pokemon API.
+          Server-side rendering using the Pokemon API.
         </CardDescription>
       </CardHeader>
-      <CardContent className="gap-` flex flex-col items-center">
+      <CardContent className="flex flex-col items-center">
         <p className="text-2xl font-bold">{data?.name}</p>
 
         {data?.sprites.front_default && (
@@ -35,7 +33,7 @@ const ApiGetRequestExample = () => {
           />
         )}
 
-        <div className="grid w-full grid-cols-1 self-start text-xs sm:grid-cols-2">
+        <div className="grid w-full grid-cols-1 gap-x-4 self-start text-xs sm:grid-cols-2">
           {[
             { label: "Height", value: data?.height },
             { label: "Weight", value: data?.weight },
@@ -60,6 +58,4 @@ const ApiGetRequestExample = () => {
       </CardContent>
     </Card>
   );
-};
-
-export default ApiGetRequestExample;
+}
