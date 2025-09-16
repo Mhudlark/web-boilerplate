@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -7,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { fetchGetPokemon } from "@/lib/pokemon-api/use-get-pokemon";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function ServerSideFetchExample() {
   const data = await fetchGetPokemon("pikachu");
@@ -17,6 +19,17 @@ export default async function ServerSideFetchExample() {
         <CardTitle>GET Request (SSR)</CardTitle>
         <CardDescription>
           Server-side rendering using the Pokemon API.
+          <br />
+          <strong>Note:</strong> The data will not refresh on mount. Read more{" "}
+          <Button asChild variant="link" className="h-fit p-0">
+            <Link
+              href="https://nextjs.org/docs/app/getting-started/caching-and-revalidating"
+              target="_blank"
+              rel="noreferrer"
+            >
+              here
+            </Link>
+          </Button>
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col items-center">

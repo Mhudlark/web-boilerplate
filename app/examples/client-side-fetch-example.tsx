@@ -21,6 +21,8 @@ const ClientSideFetchExample = () => {
         <CardTitle>GET Request (CSR)</CardTitle>
         <CardDescription>
           Client-side rendering using the Pokemon API.
+          <br />
+          <strong>Note:</strong> The data refreshes on mount
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col items-center">

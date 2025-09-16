@@ -96,8 +96,6 @@ export const fetchGetPokemon = async (name: string) => {
     return pokemonApi.throwApiError(response);
   }
 
-  if (response.ok) throw new Error("Unreachable code");
-
   return response.json() as Promise<GetPokemonResponse>;
 };
 
