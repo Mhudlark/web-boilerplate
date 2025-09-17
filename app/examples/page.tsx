@@ -1,5 +1,4 @@
 import ApiGetRequestExample from "./api-get-request-example";
-import FontExample from "./font-example";
 
 export default function ExamplesPage() {
   return (
@@ -8,7 +7,6 @@ export default function ExamplesPage() {
 
       <div className="grid min-h-screen w-full grid-cols-1 gap-6 lg:grid-cols-2">
         <ApiGetRequestExample />
-        <FontExample />
       </div>
     </div>
   );

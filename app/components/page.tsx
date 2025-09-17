@@ -103,6 +103,28 @@ export default function ComponentsPage() {
       <div className="flex max-w-4xl flex-col gap-24">
         <h1 className="text-4xl font-bold">UI Components</h1>
 
+        {/* Typography */}
+        <Section title="Typography">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            <div className="flex flex-col gap-1">
+              <p className="text-4xl">Heading 4xl</p>
+              <p className="text-3xl">Heading 3xl</p>
+              <p className="text-2xl">Heading 2xl</p>
+              <p className="text-xl">Heading xl</p>
+              <p className="text-lg">Heading lg</p>
+              <p className="text-base">Heading base</p>
+              <p className="text-sm">Heading sm</p>
+              <p className="text-xs">Heading xs</p>
+            </div>
+            <div className="flex flex-col gap-1">
+              <p className="font-heading text-4xl font-bold">Custom heading</p>
+              <p className="font-sans">Sans typography</p>
+              <p className="font-serif">Serif typography</p>
+              <p className="font-mono">Mono typography</p>
+            </div>
+          </div>
+        </Section>
+
         {/* Buttons */}
         <Section title="Button">
           <div className="flex flex-col gap-6">

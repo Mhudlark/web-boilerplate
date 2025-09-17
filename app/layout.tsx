@@ -1,20 +1,13 @@
 import { Navbar } from "@/components/features/layout/navbar";
 import { Providers } from "@/components/providers";
 import type { Metadata } from "next";
-import { Geist_Mono, Inter, Montserrat } from "next/font/google";
+import { Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
-// Body font - Inter from Google Fonts
-export const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-});
-
 // Heading font - Using Montserrat from Google Fonts
-export const headingFont = Montserrat({
+export const headingFont = Playfair_Display({
   subsets: ["latin"],
-  display: "swap",
+  display: "swap", // Use 'swap' to ensure text is visible during font loading
   variable: "--font-heading",
   weight: ["400", "500", "600", "700"],
 });
@@ -39,7 +32,7 @@ export default function RootLayout({
     // https://ui.shadcn.com/docs/dark-mode/next
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${headingFont.variable} ${geistMono.variable} antialiased`}
+        className={`${headingFont.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
           <Navbar />
