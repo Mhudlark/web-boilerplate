@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/features/layout/navbar";
 import { Providers } from "@/components/providers";
 import type { Metadata } from "next";
-import { Geist_Mono, Playfair_Display } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 // Heading font - Using Montserrat from Google Fonts
@@ -10,6 +10,11 @@ export const headingFont = Playfair_Display({
   display: "swap", // Use 'swap' to ensure text is visible during font loading
   variable: "--font-heading",
   weight: ["400", "500", "600", "700"],
+});
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
@@ -32,7 +37,7 @@ export default function RootLayout({
     // https://ui.shadcn.com/docs/dark-mode/next
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${headingFont.variable} ${geistMono.variable} antialiased`}
+        className={`${headingFont.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
           <Navbar />
