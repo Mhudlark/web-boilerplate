@@ -8,18 +8,23 @@ const examplePrefillData: Partial<ExampleFormSchema> = {
   confirmUsername: "AdaLovelace",
 };
 
+// Fetch function
+const fetchGetExampleFormData = async (): Promise<
+  Partial<ExampleFormSchema>
+> => {
+  // Simulate an API call with a delay
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(examplePrefillData);
+    }, 800);
+  });
+};
+
 // React Query hook
 const useGetExampleFormData = () => {
   return useQuery({
     queryKey: GET_EXAMPLE_FORM_DATA_QUERY_KEY,
-    queryFn: (): Promise<Partial<ExampleFormSchema>> => {
-      // Wait 2 seconds and return example prefill data
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(examplePrefillData);
-        }, 800);
-      });
-    },
+    queryFn: fetchGetExampleFormData,
   });
 };
 
