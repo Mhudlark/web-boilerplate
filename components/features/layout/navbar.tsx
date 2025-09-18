@@ -22,6 +22,10 @@ const routes = [
     href: "/components",
   },
   {
+    title: "Forms",
+    href: "/form",
+  },
+  {
     title: "Examples",
     href: "/examples",
   },

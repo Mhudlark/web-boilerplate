@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // Suppress hydration warning used for next-thems
+    // Suppress hydration warning used for next-themes
     // https://ui.shadcn.com/docs/dark-mode/next
     <html lang="en" suppressHydrationWarning>
       <body
@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <Providers>
           <Navbar />
-          {children}
+          <main>{children}</main>
         </Providers>
       </body>
     </html>
