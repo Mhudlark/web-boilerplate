@@ -46,6 +46,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
   SelectContent,
@@ -361,6 +362,24 @@ export default function ComponentsPage() {
               <Label htmlFor="checkbox4">Disabled checked checkbox</Label>
             </div>
           </div>
+        </Section>
+
+        {/* Radio group */}
+        <Section title="Radio Group">
+          <RadioGroup defaultValue="option-1">
+            <div className="flex items-center gap-3">
+              <RadioGroupItem value="option-1" id="r1" />
+              <Label htmlFor="r1">Option 1</Label>
+            </div>
+            <div className="flex items-center gap-3">
+              <RadioGroupItem value="option-2" id="r2" />
+              <Label htmlFor="r2">Option 2</Label>
+            </div>
+            <div className="flex items-center gap-3">
+              <RadioGroupItem value="option-3" id="r3" />
+              <Label htmlFor="r3">Option 3</Label>
+            </div>
+          </RadioGroup>
         </Section>
 
         {/* Switch */}
